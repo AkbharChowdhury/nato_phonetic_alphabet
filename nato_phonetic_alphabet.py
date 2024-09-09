@@ -11,13 +11,13 @@ def main():
         data = pd.read_csv("nato_phonetic_alphabet.csv")
         phonetics = {row.letter: [] for (_, row) in data.iterrows()}
         for (_, row) in data.iterrows():
-            phonetics[row['letter']].append(row['code'])
+            phonetics[row.letter].append(row.code.strip())
         print(phonetics)
-        letter = input("Enter a letter: ").upper()
-        result = list(itertools.chain(*[phonetics[letter] for _ in letter]))
+        word = input("Enter a letter: ").upper()
+        result = list(itertools.chain(*[phonetics[word] for _ in word]))
         print(format_list(result))
     except KeyError:
-        print(f"{letter} is not in the dictionary.")
+        print(f"{word} is not in the dictionary.")
 
 
 if __name__ == '__main__':
